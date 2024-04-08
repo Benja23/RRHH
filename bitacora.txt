@@ -1,0 +1,8 @@
+
+Rutas compartidas 
+ControllerPanelSumarry.php ===> Rol =1 Admin :* Usuarios
+ControllerChangePassword.php===>Rol = 1 Admin :*Users
+
+tabla Pesona
+permission =1 ->permiso activo
+permission =0 ->permiso sin permiso

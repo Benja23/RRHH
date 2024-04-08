@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla Dinámica con jQuery y JSON</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<h2>Tabla de Productos</h2>
+
+<table id="tablaProductos">
+    <thead>
+        <tr id="encabezados">
+            <!-- Los encabezados se generarán dinámicamente aquí -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Aquí se agregarán las filas dinámicamente -->
+    </tbody>
+</table>
+
+<script>
+$(document).ready(function(){
+    // Datos de ejemplo en formato JSON
+    var encabezados = ["Nombre", "Cantidad", "Precio", "Fecha"];
+
+    var detalle_ = [
+        { "saleDetailId": 26, "saleDate": "2024-03-22T11:13:31.693", "articleId": 8, "quantity": 1 },
+        { "saleDetailId": 27, "saleDate": "2024-03-22T11:13:31.693", "articleId": 9, "quantity": 1},
+        { "saleDetailId": 30, "saleDate": "2024-03-24T01:53:29.957","articleId": 9, "quantity": 3},
+        { "saleDetailId": 31, "saleDate": "2024-03-24T01:53:29.957", "articleId": 7, "quantity": 3 }
+    ];
+
+     var articulo =  [
+        { "articleId": 6, "name": "BOTAS", "stock": 32, "specification": "Talla 42", "sellPrice": 80.00 },
+        { "articleId": 7, "name": "ZAPATILLAS", "stock": 2, "specification": "Talla 42", "sellPrice": 50.50 },
+        { "articleId": 8, "name": "BOTAS 2", "stock": 39, "specification": "Talla 42", "sellPrice": 10.00},
+        { "articleId": 9, "name": "CASCO 2", "stock": 89, "specification": "Talla S", "sellPrice": 50.00},
+        { "articleId": 12,  "name": "PRUEBASSSS", "stock": 1, "specification": "Talla 42", "sellPrice": 12.00 },
+        { "articleId": 13,  "name": "PRUEBAAAA", "stock": 37, "specification": "Talla 42", "sellPrice": 10.20 }
+    ];
+
+    // Generar los encabezados dinámicamente
+    $.each(encabezados, function(index, encabezado) {
+        $("#encabezados").append("<th>" + encabezado + "</th>");
+    });
+
+    // Recorrer el arreglo de productos y agregar filas a la tabla
+    $.each(detalle_, function(index, producto) {
+        var newRow = $("<tr>");
+        var cols = "";
+
+        // Agregar las celdas con los datos del producto
+        cols += '<td>' + producto.saleDetailId + '</td>';
+        cols += '<td>' + producto.saleDate + '</td>';
+        cols += '<td>' + producto.articleId + '</td>';
+        cols += '<td>' + producto.quantity + '</td>';
+
+        newRow.append(cols);
+        $("#tablaProductos tbody").append(newRow);
+    });
+});
+</script>
+
+</body>
+</html>
